@@ -26,7 +26,7 @@ export const getTimestamp = (createdAt: Date): string => {
     return `${days} ${days > 1 ? "days" : "day"} ago`;
   } else if (hours > 1) {
     return `${hours} ${hours > 1 ? "hours" : "hour"} ago`;
-  } else if (minutes > 1) {
+  } else if (seconds >= 60) {
     return `${minutes} ${minutes > 1 ? "minutes" : "minute"} ago`;
   } else if (seconds > 1) {
     return `${seconds} ${seconds > 1 ? "seconds" : "second"} ago`;
