@@ -60,6 +60,7 @@ export async function updateUser(userData: UpdateUserParams) {
 
     // revalidate the path
     revalidatePath(path);
+    return user;
   } catch (error) {
     console.log(error);
     throw error;
@@ -83,9 +84,7 @@ export async function deleteUser(userData: DeleteUserParams) {
     // and questions, answers, comments, etc.
 
     // get user question ids
-    const userQuestionIds = await Question.find({ author: user._id }).distinct(
-      "_id"
-    );
+    // const userQuestionIds = await Question.find({ author: user._id }).distinct("_id");
 
     // delete user questions
     await Question.deleteMany({ author: user._id });
