@@ -3,7 +3,6 @@ import { UserFilters } from "@/constants/filters";
 import Filter from "@/components/shared/Filter";
 import React from "react";
 import Link from "next/link";
-import UserCard from "@/components/cards/UserCard";
 import NoResult from "@/components/shared/NoResult";
 import { getAllTags } from "@/lib/actions/tag.action";
 
