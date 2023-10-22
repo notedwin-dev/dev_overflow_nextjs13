@@ -63,7 +63,7 @@ const page = async ({ params }: { params: { id: string } }) => {
       <div className="mb-8 mt-5 flex flex-wrap gap-4">
         <Metric
           imgUrl="/assets/icons/clock.svg"
-          alt="upvotes"
+          alt="asked"
           value={`asked ${getTimestamp(result.createdAt)}`}
           title=""
           textStyles="small-medium text-dark-400_light-800"
