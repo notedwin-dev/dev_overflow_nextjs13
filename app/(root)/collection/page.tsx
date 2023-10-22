@@ -35,7 +35,7 @@ export default async function Collection() {
 
       <div className="mt-10 flex w-full flex-col gap-6">
         {results.questions.length > 0 ? (
-          results.questions.map((question) => (
+          results.questions.map((question: any) => (
             <QuestionCard
               key={question._id}
               _id={question._id}
