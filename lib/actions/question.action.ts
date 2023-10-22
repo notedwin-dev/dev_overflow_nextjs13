@@ -107,20 +107,88 @@ export async function upvoteQuestion(params: QuestionVoteParams) {
 
     let updateQuery = {};
 
+    // if the user has upvoted the question, they clicked on the upvote button, that means they have decided to remove the upvote.
     if (hasUpvoted) {
       updateQuery = {
+        // pulling out the upvotes from the question
         $pull: { upvotes: userId },
       };
     } else if (hasDownvoted) {
       updateQuery = {
+        // pulling out the downvotes from the question
         $pull: { downvotes: userId },
+        // and pushing new upvotes to the question
         $push: { upvotes: userId },
       };
     } else {
       updateQuery = {
+        // so we have to push the upvotes to the question
         $addToSet: { upvotes: userId },
       };
     }
+
+    // update the question collections of our mongoDB database with the new query
+    const question = await Question.findByIdAndUpdate(questionId, updateQuery, {
+      new: true,
+    });
+
+    if (!question) {
+      throw new Error("Question not found");
+    }
+
+    console.log({ question });
+    // Increment author's reputation
+
+    // then we revalidate the path to refresh our page with the latest data.
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function downvoteQuestion(params: QuestionVoteParams) {
+  try {
+    connectToDatabase();
+
+    const { questionId, userId, hasUpvoted, hasDownvoted, path } = params;
+
+    let updateQuery = {};
+
+    // if the user has downvoted the question, they clicked on the downvote button, that means they have decided to remove the downvote.
+    if (hasDownvoted) {
+      updateQuery = {
+        // so we have to pull out the downvotes from the question
+        $pull: { downvotes: userId },
+      };
+    } else if (hasUpvoted) {
+      updateQuery = {
+        // pulling out the upvotes from the question
+        $pull: { upvotes: userId },
+        // and pushing new downvotes to the question
+        $push: { downvotes: userId },
+      };
+    } else {
+      updateQuery = {
+        // so we have to push the downvotes to the question
+        $addToSet: { downvotes: userId },
+      };
+    }
+
+    // update the question collections of our mongoDB database with the new query
+    const question = await Question.findByIdAndUpdate(questionId, updateQuery, {
+      new: true,
+    });
+
+    if (!question) {
+      throw new Error("Question not found");
+    }
+
+    console.log({ question });
+    // Increment author's reputation
+
+    // then we revalidate the path to refresh our page with the latest data.
+    revalidatePath(path);
   } catch (error) {
     console.log(error);
     throw error;
