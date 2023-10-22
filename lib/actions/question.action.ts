@@ -7,6 +7,7 @@ import {
   CreateQuestionParams,
   GetQuestionByIdParams,
   GetQuestionsParams,
+  QuestionVoteParams,
 } from "./shared.types";
 import User from "@/database/user.model";
 import { revalidatePath } from "next/cache";
@@ -92,5 +93,36 @@ export async function getQuestionById(params: GetQuestionByIdParams) {
       });
 
     return question;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function upvoteQuestion(params: QuestionVoteParams) {
+  try {
+    connectToDatabase();
+
+    const { questionId, userId, hasUpvoted, hasDownvoted, path } = params;
+
+    let updateQuery = {};
+
+    if (hasUpvoted) {
+      updateQuery = {
+        $pull: { upvotes: userId },
+      };
+    } else if (hasDownvoted) {
+      updateQuery = {
+        $pull: { downvotes: userId },
+        $push: { upvotes: userId },
+      };
+    } else {
+      updateQuery = {
+        $addToSet: { upvotes: userId },
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
