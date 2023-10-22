@@ -5,6 +5,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
 
 import "./globals.css";
+import "../styles/prism-atom-dark.css";
 import { ThemeProvider } from "@/context/ThemeProvider";
 
 const inter = Inter({
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "A community-driven platform for asking and answering programming questions. Get help, share knowledge and collborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures and more.",
   icons: {
-    icon: "/public/assets/images/site-logo.svg",
+    icon: "./favicon.ico",
   },
 };
 
