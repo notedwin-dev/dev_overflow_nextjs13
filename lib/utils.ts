@@ -20,9 +20,9 @@ export const getTimestamp = (createdAt: Date): string => {
     return `${years} ${years > 1 ? "years" : "year"} ago`;
   } else if (months > 0) {
     return `${months} ${months > 1 ? "months" : "month"} ago`;
-  } else if (weeks > 0) {
+  } else if (days > 7) {
     return `${weeks} ${weeks > 1 ? "weeks" : "week"} ago`;
-  } else if (days > 1) {
+  } else if (hours > 24) {
     return `${days} ${days > 1 ? "days" : "day"} ago`;
   } else if (hours > 1) {
     return `${hours} ${hours > 1 ? "hours" : "hour"} ago`;
