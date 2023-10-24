@@ -60,3 +60,14 @@ export const formatNumber = (num: number): string => {
     return num.toString();
   }
 };
+
+export function getJoinedDate(date: Date): string {
+  if (date instanceof Date) {
+    const month = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+
+    return `${month} ${year}`;
+  } else {
+    return "Invalid Date"; // Handle the case where date is not a valid Date object
+  }
+}
