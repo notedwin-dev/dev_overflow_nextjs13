@@ -5,9 +5,12 @@ import React from "react";
 import Link from "next/link";
 import NoResult from "@/components/shared/NoResult";
 import { getAllTags } from "@/lib/actions/tag.action";
+import { SearchParamsProps } from "@/types";
 
-const Page = async () => {
-  const result = await getAllTags({});
+const Page = async ({ searchParams }: SearchParamsProps) => {
+  const result = await getAllTags({
+    searchQuery: searchParams.q,
+  });
 
   return (
     <>
