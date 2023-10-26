@@ -19,8 +19,8 @@ export interface GetAnswersParams {
 export interface AnswerVoteParams {
   answerId: string;
   userId: string;
-  hasupVoted: boolean;
-  hasdownVoted: boolean;
+  hasUpvoted: boolean;
+  hasDownvoted: boolean;
   path: string;
 }
 
@@ -87,7 +87,7 @@ export interface EditQuestionParams {
   questionId: string;
   title: string;
   content: string;
-  tags: string[];
+  tags?: string[];
   path: string;
 }
 

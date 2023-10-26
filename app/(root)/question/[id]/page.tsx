@@ -47,10 +47,10 @@ const page = async ({ params }: { params: { id: string } }) => {
               type="question"
               itemId={JSON.stringify(result._id)}
               userId={JSON.stringify(mongoUser?._id)}
-              upvotes={result.upvotes}
-              hasUpvoted={result.upvotes.includes(mongoUser?._id)}
-              downvotes={result.downvotes}
-              hasDownvoted={result.downvotes.includes(mongoUser?._id)}
+              upvotes={result.upvotes.length}
+              hasUpvoted={result.upvotes.includes(mongoUser._id)}
+              downvotes={result.downvotes.length}
+              hasDownvoted={result.downvotes.includes(mongoUser._id)}
               hasSaved={mongoUser?.saved.includes(result._id)}
             />
           </div>
@@ -63,7 +63,7 @@ const page = async ({ params }: { params: { id: string } }) => {
       <div className="mb-8 mt-5 flex flex-wrap gap-4">
         <Metric
           imgUrl="/assets/icons/clock.svg"
-          alt="upvotes"
+          alt="asked"
           value={`asked ${getTimestamp(result.createdAt)}`}
           title=""
           textStyles="small-medium text-dark-400_light-800"
@@ -99,7 +99,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 
       <AllAnswers
         questionId={result._id}
-        userId={JSON.stringify(mongoUser?._id)}
+        userId={mongoUser?._id}
         totalAnswers={result.answers.length}
       />
 
