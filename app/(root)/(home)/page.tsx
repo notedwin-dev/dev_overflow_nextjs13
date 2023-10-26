@@ -12,7 +12,10 @@ import Link from "next/dist/client/link";
 export default async function Home({ searchParams }: SearchParamsProps) {
   const results = await getQuestions({
     searchQuery: searchParams.q,
+    filter: searchParams.filter,
   });
+
+  // TODO: Fetch Recommended Questions
 
   return (
     <>
