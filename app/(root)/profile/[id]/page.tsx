@@ -17,10 +17,6 @@ const Page = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
   const userInfo = await getUserInfo({ userId: params.id });
 
-  userInfo.user.bio = "I'm a full-stack web developer and I love to code.";
-  userInfo.user.location = "Malaysia";
-  userInfo.user.portfolioWebsite = "https://www.notedwin.dev";
-
   return (
     <>
       <div className="flex flex-col-reverse items-start justify-between sm:flex-row">
