@@ -76,27 +76,29 @@ const QuestionCard = ({
           href={`/profile/${author._id}`}
           textStyles="body-medium text-dark-400_light-700"
         />
-        <Metric
-          imgUrl="/assets/icons/like.svg"
-          alt="upvotes"
-          value={formatNumber(upvotes.length)}
-          title=" Votes"
-          textStyles="small-medium text-dark-400_light-800"
-        />
-        <Metric
-          imgUrl="/assets/icons/message.svg"
-          alt="message"
-          value={formatNumber(answers.length)}
-          title=" Answers"
-          textStyles="small-medium text-dark-400_light-800"
-        />
-        <Metric
-          imgUrl="/assets/icons/eye.svg"
-          alt="views"
-          value={formatNumber(views)}
-          title=" Views"
-          textStyles="small-medium text-dark-400_light-800"
-        />
+        <div className="flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start">
+          <Metric
+            imgUrl="/assets/icons/like.svg"
+            alt="upvotes"
+            value={formatNumber(upvotes.length)}
+            title=" Votes"
+            textStyles="small-medium text-dark-400_light-800"
+          />
+          <Metric
+            imgUrl="/assets/icons/message.svg"
+            alt="message"
+            value={formatNumber(answers.length)}
+            title=" Answers"
+            textStyles="small-medium text-dark-400_light-800"
+          />
+          <Metric
+            imgUrl="/assets/icons/eye.svg"
+            alt="views"
+            value={formatNumber(views)}
+            title=" Views"
+            textStyles="small-medium text-dark-400_light-800"
+          />
+        </div>
       </div>
     </div>
   );
