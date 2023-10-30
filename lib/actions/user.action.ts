@@ -34,8 +34,30 @@ export async function getAllUsers(params: GetAllUsersParams) {
       ];
     }
 
+    let sortOptions = {};
+
+    switch (filter) {
+      case "new_users":
+        sortOptions = { joinedAt: -1 };
+        console.log(`--- Sorting by new users ---`);
+        break;
+      case "old_users":
+        sortOptions = { joinedAt: 1 };
+        console.log(`--- Sorting by old users ---`);
+        break;
+      case "top_contributors":
+        sortOptions = { reputation: -1 };
+        console.log(`--- Sorting by top contributors ---`);
+        break;
+
+      default:
+        break;
+    }
+
     // Get all users
-    const users = await User.find(query).sort({ createdAt: -1 });
+    const users = await User.find(query).sort(sortOptions);
+
+    console.log(users);
 
     // Return the users
     return { users };
